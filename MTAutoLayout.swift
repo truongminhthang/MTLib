@@ -86,7 +86,7 @@ extension UIView {
     }
     
     
-    func mt_InnerAlign (pinTo: PinPosition, space: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    func mt_InnerAlign (pinTo: PinPosition, space: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         switch pinTo {
         case PinPosition.HighLeft:
@@ -114,11 +114,9 @@ extension UIView {
         }
     }
     
-    
-    
     // MARK: HIGH
     
-    private func hightLeft (topLeft x: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func hightLeft (topLeft x: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let top = topToTop(space: x + offset.vertical)
@@ -135,7 +133,7 @@ extension UIView {
         return dict
     }
     
-    private func hightCenter(top top: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func hightCenter(top top: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let gap = topToTop(space: top + offset.vertical)
@@ -154,7 +152,7 @@ extension UIView {
         return dict
     }
     
-    private func hightRight(topRight topRight: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func hightRight(topRight topRight: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let top = topToTop(space: topRight + offset.vertical)
@@ -173,7 +171,7 @@ extension UIView {
     
     //MARK: MID
     
-    private func midLeft (left: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func midLeft (left: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let centerY = centerYToCenterY(space: offset.vertical)
@@ -191,7 +189,7 @@ extension UIView {
         return dict
     }
     
-    private func center(size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint] {
+    private func center(size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint] {
         var dict = [String: NSLayoutConstraint]()
         
         let centerX = centerXToCenterX(space: offset.horizontal)
@@ -208,7 +206,7 @@ extension UIView {
         return dict
     }
     
-    private func midRight (right: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func midRight (right: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let centerY = centerYToCenterY(space: offset.vertical)
@@ -228,7 +226,7 @@ extension UIView {
     
     
     // MARK: LOW
-    private func lowLeft (bottomLeft: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func lowLeft (bottomLeft: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let bottom = bottomToBottom(space: -bottomLeft + offset.vertical)
@@ -246,7 +244,7 @@ extension UIView {
         return dict
     }
     
-    private func lowCenter(bottom: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint] {
+    private func lowCenter(bottom: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint] {
         var dict = [String: NSLayoutConstraint]()
         
         let centerX = centerXToCenterX(space: offset.horizontal)
@@ -263,7 +261,7 @@ extension UIView {
         return dict
     }
     
-    private func lowRight (bottomRight: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func lowRight (bottomRight: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let bottom = bottomToBottom(space: -bottomRight + offset.vertical)
@@ -705,7 +703,7 @@ extension UIView {
 
 extension UIView {
     
-    func mt_OuterAlign(pinTo: PinOuterPosition, toView v: UIView,space: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]{
+    func mt_OuterAlign(pinTo: PinOuterPosition, toView v: UIView,space: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]{
         switch pinTo {
         case .BottomLeft:
             return bottomLeftFromView(toView: v, gap: space, size: size, offset: offset)
@@ -744,7 +742,7 @@ extension UIView {
     
     //MARK: - BASE POSITION OUTER
     
-    private func bottomLeftFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func bottomLeftFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let constraint1 = trailToLead(toView: v, space: -gap + offset.horizontal)
@@ -760,7 +758,7 @@ extension UIView {
         return dict
     }
     
-    private func lowerLeftFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func lowerLeftFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let constraint1 = trailToLead(toView: v, space: -gap + offset.horizontal)
@@ -778,7 +776,7 @@ extension UIView {
         return dict
     }
     
-    private func leftFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func leftFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let constraint1 = trailToLead(toView: v, space: -gap + offset.horizontal)
@@ -797,7 +795,7 @@ extension UIView {
         return dict
     }
     
-    private func higherLeftFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func higherLeftFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let constraint1 = trailToLead(toView: v, space: -gap + offset.horizontal)
@@ -815,7 +813,7 @@ extension UIView {
         return dict
     }
     //MARK: TOP
-    private func topLeftFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func topLeftFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let constraint1 = trailToLead(toView: v, space: -gap + offset.horizontal)
@@ -832,7 +830,7 @@ extension UIView {
         return dict
     }
     
-    private func lefterTopFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func lefterTopFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let constraint1 = leadToLead(toView: v, space: gap + offset.horizontal)
@@ -850,7 +848,7 @@ extension UIView {
         return dict
     }
     
-    private func topFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func topFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let constraint1 = bottomToTop(toView: v, space: -gap + offset.vertical)
@@ -868,7 +866,7 @@ extension UIView {
         
         return dict
     }
-    private func righterTopFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func righterTopFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let constraint1 = trailToTrail(toView: v, space: -gap + offset.horizontal)
@@ -887,7 +885,7 @@ extension UIView {
         return dict
     }
     //MARK: RIGHT
-    private func topRightFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func topRightFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let constraint1 = leadToTrail(toView: v, space: gap + offset.horizontal)
@@ -906,7 +904,7 @@ extension UIView {
         return dict
     }
     
-    private func higherRightFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func higherRightFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let constraint1 = leadToTrail(toView: v, space: gap + offset.horizontal)
@@ -925,7 +923,7 @@ extension UIView {
         return dict
     }
     
-    private func rightFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func rightFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let constraint1 = leadToTrail(toView: v, space: gap + offset.horizontal)
@@ -944,7 +942,7 @@ extension UIView {
         return dict
     }
     
-    private func lowerRightFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func lowerRightFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let constraint1 = leadToTrail(toView: v, space: gap + offset.horizontal)
@@ -964,7 +962,7 @@ extension UIView {
     
     // MARK: BOTTOM
     
-    private func bottomRightFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func bottomRightFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let constraint1 = leadToTrail(toView: v, space: gap + offset.horizontal)
@@ -982,7 +980,7 @@ extension UIView {
         return dict
     }
     
-    private func righterBottomFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func righterBottomFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let constraint1 = trailToTrail(toView: v, space: -gap + offset.horizontal)
@@ -1000,7 +998,7 @@ extension UIView {
         return dict
     }
     
-    private func bottomFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func bottomFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let constraint1 = topToBottom(toView: v, space: gap + offset.vertical)
@@ -1019,7 +1017,7 @@ extension UIView {
     }
     
     
-    private func lefterBottomFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffset(horizontal: 0, vertical: 0)) -> [String: NSLayoutConstraint]
+    private func lefterBottomFromView (toView v: UIView, gap: CGFloat, size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint]
     {
         var dict = [String: NSLayoutConstraint]()
         let constraint1 = leadToLead(toView: v, space: gap + offset.horizontal)
