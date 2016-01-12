@@ -89,7 +89,7 @@ extension UIView {
         self.frame.size = size
     }
     
-    private func center (size: CGSize, offset: UIOffset = UIOffsetZero) {
+    func alignCenter (size: CGSize, offset: UIOffset = UIOffsetZero) {
         let x = (superview!.frame.width - size.width ) * 0.5
         let y = (superview!.frame.height - size.height) * 0.5
         self.leadToLead(x + offset.horizontal)
@@ -171,502 +171,87 @@ extension UIView {
     
     private func bottomLeftFromView (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        var dict = [String: NSLayoutConstraint]()
-        let constraint1 = trailToLead(toView: v, space: -gap + offset.horizontal)
-        let constraint2 = topToBottom(toView: v, space: gap + offset.vertical)
-        dict[constraint1.identifier!] = constraint1
-        dict[constraint2.identifier!] = constraint2
-        if let _size = size {
-            let sizeConstraint = mt_SetSize (_size)
-            for (key, constraint) in sizeConstraint{
-                dict[key] = constraint
-            }
-        }
+        let x = v.frame.origin.x - gap - size.width + offset.horizontal
+        let y = v.frame.origin.y + v.frame.height + gap + offset.vertical
+        self.frame.origin = CGPoint(x: x, y: y)
+        self.frame.size = size
     }
     
     private func lowerLeftFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        var dict = [String: NSLayoutConstraint]()
-        let constraint1 = trailToLead(toView: v, space: -gap + offset.horizontal)
-        let constraint2 = bottomToBottom(toView: v, space: -gap + offset.vertical)
         
-        dict[constraint1.identifier!] = constraint1
-        dict[constraint2.identifier!] = constraint2
-        
-        if let _size = size {
-            let sizeConstraint = mt_SetSize (_size)
-            for (key, constraint) in sizeConstraint{
-                dict[key] = constraint
-            }
-        }
-        return dict
     }
     
     private func leftFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        var dict = [String: NSLayoutConstraint]()
-        let constraint1 = trailToLead(toView: v, space: -gap + offset.horizontal)
-        let constraint2 = centerYToCenterY(toView: v, space: offset.vertical)
-        
-        dict[constraint1.identifier!] = constraint1
-        dict[constraint2.identifier!] = constraint2
-        
-        if let _size = size {
-            let sizeConstraint = mt_SetSize (_size)
-            for (key, constraint) in sizeConstraint{
-                dict[key] = constraint
-            }
-        }
-        
-        return dict
+       
     }
     
     private func higherLeftFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        var dict = [String: NSLayoutConstraint]()
-        let constraint1 = trailToLead(toView: v, space: -gap + offset.horizontal)
-        let constraint2 = topToTop(toView: v, space: gap + offset.vertical)
-        
-        dict[constraint1.identifier!] = constraint1
-        dict[constraint2.identifier!] = constraint2
-        
-        if let _size = size {
-            let sizeConstraint = mt_SetSize (_size)
-            for (key, constraint) in sizeConstraint{
-                dict[key] = constraint
             }
-        }
-        return dict
-    }
     //MARK: TOP
     private func topLeftFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        var dict = [String: NSLayoutConstraint]()
-        let constraint1 = trailToLead(toView: v, space: -gap + offset.horizontal)
-        let constraint2 = bottomToTop(toView: v, space: -gap + offset.vertical)
-        dict[constraint1.identifier!] = constraint1
-        dict[constraint2.identifier!] = constraint2
-        
-        if let _size = size {
-            let sizeConstraint = mt_SetSize (_size)
-            for (key, constraint) in sizeConstraint{
-                dict[key] = constraint
-            }
-        }
-        return dict
+    
     }
     
     private func lefterTopFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        var dict = [String: NSLayoutConstraint]()
-        let constraint1 = leadToLead(toView: v, space: gap + offset.horizontal)
-        let constraint2 = bottomToTop(toView: v, space: -gap + offset.vertical)
-        dict[constraint1.identifier!] = constraint1
-        dict[constraint2.identifier!] = constraint2
         
-        if let _size = size {
-            let sizeConstraint = mt_SetSize (_size)
-            for (key, constraint) in sizeConstraint{
-                dict[key] = constraint
-            }
-        }
-        
-        return dict
     }
     
     private func topFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        var dict = [String: NSLayoutConstraint]()
-        let constraint1 = bottomToTop(toView: v, space: -gap + offset.vertical)
-        let constraint2 = centerXToCenterX(toView: v, space: offset.horizontal)
-        
-        dict[constraint1.identifier!] = constraint1
-        dict[constraint2.identifier!] = constraint2
-        
-        if let _size = size {
-            let sizeConstraint = mt_SetSize (_size)
-            for (key, constraint) in sizeConstraint{
-                dict[key] = constraint
-            }
-        }
-        
-        return dict
+    
     }
     private func righterTopFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        var dict = [String: NSLayoutConstraint]()
-        let constraint1 = trailToTrail(toView: v, space: -gap + offset.horizontal)
-        let constraint2 = bottomToTop(toView: v, space: -gap + offset.vertical)
         
-        dict[constraint1.identifier!] = constraint1
-        dict[constraint2.identifier!] = constraint2
-        
-        if let _size = size {
-            let sizeConstraint = mt_SetSize (_size)
-            for (key, constraint) in sizeConstraint{
-                dict[key] = constraint
-            }
-        }
-        
-        return dict
     }
     //MARK: RIGHT
     private func topRightFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        var dict = [String: NSLayoutConstraint]()
-        let constraint1 = leadToTrail(toView: v, space: gap + offset.horizontal)
-        let constraint2 = bottomToTop(toView: v, space: -gap + offset.vertical)
-        
-        dict[constraint1.identifier!] = constraint1
-        dict[constraint2.identifier!] = constraint2
-        
-        if let _size = size {
-            let sizeConstraint = mt_SetSize (_size)
-            for (key, constraint) in sizeConstraint{
-                dict[key] = constraint
-            }
-        }
-        
-        return dict
+       
     }
     
     private func higherRightFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        var dict = [String: NSLayoutConstraint]()
-        let constraint1 = leadToTrail(toView: v, space: gap + offset.horizontal)
-        let constraint2 = topToTop(toView: v, space: gap + offset.vertical)
         
-        dict[constraint1.identifier!] = constraint1
-        dict[constraint2.identifier!] = constraint2
-        
-        if let _size = size {
-            let sizeConstraint = mt_SetSize (_size)
-            for (key, constraint) in sizeConstraint{
-                dict[key] = constraint
-            }
-        }
-        
-        return dict
     }
     
     private func rightFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        var dict = [String: NSLayoutConstraint]()
-        let constraint1 = leadToTrail(toView: v, space: gap + offset.horizontal)
-        let constraint2 = centerYToCenterY(toView: v, space: offset.vertical)
         
-        dict[constraint1.identifier!] = constraint1
-        dict[constraint2.identifier!] = constraint2
-        
-        if let _size = size {
-            let sizeConstraint = mt_SetSize (_size)
-            for (key, constraint) in sizeConstraint{
-                dict[key] = constraint
-            }
-        }
-        
-        return dict
     }
     
     private func lowerRightFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        var dict = [String: NSLayoutConstraint]()
-        let constraint1 = leadToTrail(toView: v, space: gap + offset.horizontal)
-        let constraint2 = bottomToBottom(toView: v, space: -gap + offset.vertical)
         
-        dict[constraint1.identifier!] = constraint1
-        dict[constraint2.identifier!] = constraint2
-        
-        if let _size = size {
-            let sizeConstraint = mt_SetSize (_size)
-            for (key, constraint) in sizeConstraint{
-                dict[key] = constraint
-            }
-        }
-        return dict
     }
     
     // MARK: BOTTOM
     
     private func bottomRightFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        var dict = [String: NSLayoutConstraint]()
-        let constraint1 = leadToTrail(toView: v, space: gap + offset.horizontal)
-        let constraint2 = topToBottom(toView: v, space: gap + offset.vertical)
-        
-        dict[constraint1.identifier!] = constraint1
-        dict[constraint2.identifier!] = constraint2
-        
-        if let _size = size {
-            let sizeConstraint = mt_SetSize (_size)
-            for (key, constraint) in sizeConstraint{
-                dict[key] = constraint
-            }
-        }
-        return dict
+       
     }
     
     private func righterBottomFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        var dict = [String: NSLayoutConstraint]()
-        let constraint1 = trailToTrail(toView: v, space: -gap + offset.horizontal)
-        let constraint2 = topToBottom(toView: v, space: gap + offset.vertical)
         
-        dict[constraint1.identifier!] = constraint1
-        dict[constraint2.identifier!] = constraint2
-        
-        if let _size = size {
-            let sizeConstraint = mt_SetSize (_size)
-            for (key, constraint) in sizeConstraint{
-                dict[key] = constraint
-            }
-        }
-        return dict
     }
     
     private func bottomFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        var dict = [String: NSLayoutConstraint]()
-        let constraint1 = topToBottom(toView: v, space: gap + offset.vertical)
-        let constraint2 = centerXToCenterX(toView: v, space: offset.horizontal)
-        
-        dict[constraint1.identifier!] = constraint1
-        dict[constraint2.identifier!] = constraint2
-        
-        if let _size = size {
-            let sizeConstraint = mt_SetSize (_size)
-            for (key, constraint) in sizeConstraint{
-                dict[key] = constraint
-            }
-        }
-        return dict
+       
     }
     
     
     private func lefterBottomFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        var dict = [String: NSLayoutConstraint]()
-        let constraint1 = leadToLead(toView: v, space: gap + offset.horizontal)
-        let constraint2 = topToBottom(toView: v, space: gap + offset.vertical)
-        
-        dict[constraint1.identifier!] = constraint1
-        dict[constraint2.identifier!] = constraint2
-        
-        if let _size = size {
-            let sizeConstraint = mt_SetSize (_size)
-            for (key, constraint) in sizeConstraint{
-                dict[key] = constraint
-            }
-        }
-        return dict
+    
     }
     
     
-    //MARK: - BASE CONSTRAINT
-    private func trailToLead (toView v: UIView? = nil, space: CGFloat,priority: Float = 1000) -> NSLayoutConstraint {
-        if self.translatesAutoresizingMaskIntoConstraints == true {
-            self.translatesAutoresizingMaskIntoConstraints = false
-        }
-        let constraint :NSLayoutConstraint!
-        if let theV = v{
-            constraint = NSLayoutConstraint(item: self,
-                attribute: NSLayoutAttribute.Trailing,
-                relatedBy: NSLayoutRelation.Equal,
-                toItem: theV,
-                attribute: NSLayoutAttribute.Leading,
-                multiplier: 1,
-                constant: space)
-            constraint.identifier = kConstraintType.outerTrailToLead
-        } else {
-            constraint = NSLayoutConstraint(item: self,
-                attribute: NSLayoutAttribute.Trailing,
-                relatedBy: NSLayoutRelation.Equal,
-                toItem: superview!,
-                attribute: NSLayoutAttribute.Leading,
-                multiplier: 1,
-                constant: space)
-            constraint.identifier = kConstraintType.innerTrailToLead
-        }
-        
-        
-        constraint.priority = priority
-        superview?.addConstraint(constraint)
-        return constraint
-    }
-    
-    private func leadToTrail (toView v: UIView? = nil, space: CGFloat,priority: Float = 1000) -> NSLayoutConstraint {
-        if self.translatesAutoresizingMaskIntoConstraints == true {
-            self.translatesAutoresizingMaskIntoConstraints = false
-        }
-        let constraint :NSLayoutConstraint!
-        if let theV = v{
-            constraint = NSLayoutConstraint(item: self,
-                attribute: NSLayoutAttribute.Leading,
-                relatedBy: NSLayoutRelation.Equal,
-                toItem: theV,
-                attribute: NSLayoutAttribute.Trailing,
-                multiplier: 1,
-                constant: space)
-            constraint.identifier = kConstraintType.outerLeadToTrail
-        } else {
-            constraint = NSLayoutConstraint(item: self,
-                attribute: NSLayoutAttribute.Leading,
-                relatedBy: NSLayoutRelation.Equal,
-                toItem: superview!,
-                attribute: NSLayoutAttribute.Trailing,
-                multiplier: 1,
-                constant: space)
-            constraint.identifier = kConstraintType.innerLeadToTrail
-        }
-        
-        
-        constraint.priority = priority
-        superview?.addConstraint(constraint)
-        return constraint
-    }
-    
-    private func topToBottom (toView v: UIView? = nil, space: CGFloat, priority: Float = 1000) -> NSLayoutConstraint {
-        if self.translatesAutoresizingMaskIntoConstraints == true {
-            self.translatesAutoresizingMaskIntoConstraints = false
-        }
-        let constraint :NSLayoutConstraint!
-        if let theV = v{
-            constraint = NSLayoutConstraint(item: self,
-                attribute: NSLayoutAttribute.Top,
-                relatedBy: NSLayoutRelation.Equal,
-                toItem: theV,
-                attribute: NSLayoutAttribute.Bottom,
-                multiplier: 1,
-                constant: space)
-            constraint.identifier = kConstraintType.outerTopToBottom
-        } else {
-            constraint = NSLayoutConstraint(item: self,
-                attribute: NSLayoutAttribute.Top,
-                relatedBy: NSLayoutRelation.Equal,
-                toItem: superview!,
-                attribute: NSLayoutAttribute.Bottom,
-                multiplier: 1,
-                constant: space)
-            constraint.identifier = kConstraintType.innerTopToBottom
-        }
-        
-        constraint.priority = priority
-        superview?.addConstraint(constraint)
-        return constraint
-        
-    }
-    
-    
-    private func bottomToTop (toView v: UIView? = nil, space: CGFloat, priority: Float = 1000) -> NSLayoutConstraint {
-        if self.translatesAutoresizingMaskIntoConstraints == true {
-            self.translatesAutoresizingMaskIntoConstraints = false
-        }
-        let constraint :NSLayoutConstraint!
-        if let theV = v{
-            constraint = NSLayoutConstraint(item: self,
-                attribute: NSLayoutAttribute.Bottom,
-                relatedBy: NSLayoutRelation.Equal,
-                toItem: theV,
-                attribute: NSLayoutAttribute.Top,
-                multiplier: 1,
-                constant: space)
-            constraint.identifier = kConstraintType.outerBottomToTop
-        } else {
-            constraint = NSLayoutConstraint(item: self,
-                attribute: NSLayoutAttribute.Bottom,
-                relatedBy: NSLayoutRelation.Equal,
-                toItem: superview!,
-                attribute: NSLayoutAttribute.Top,
-                multiplier: 1,
-                constant: space)
-            constraint.identifier = kConstraintType.innerBottomToTop
-        }
-        
-        constraint.priority = priority
-        superview?.addConstraint(constraint)
-        return constraint
-    }
-    // MARK: - SPLIT VIEW
-    func mt_splitVerticallyByViews (views: [UIView], edge: UIEdgeInsets, gap: CGFloat) {
-        let container = UIView()
-        self.addSubview(container)
-        
-        container.mt_InnerAlign(edge: edge)
-        
-        for  v in views {
-            container.addSubview(v)
-        }
-        
-        views[0].mt_innerAlign(left: 0, top: 0, right: nil, bottom: 0)
-        
-        for (i,v) in views.enumerate() {
-            if i > 0 {
-                v.mt_SetSizeFromView(toView: views[0])
-                v.mt_OuterAlign(PinOuterPosition.Right, toView: views[i-1], space: gap, size: nil)
-            }
-        }
-        views.last!.mt_BasicConstraint(BasicConstraintType.TrailToTrail, toView: nil, space: 0)
-    }
-    
-    func mt_splitHorizontallyByViews(views: [UIView], edge: UIEdgeInsets, gap: CGFloat) {
-        let container = UIView()
-        self.addSubview(container)
-        container.mt_InnerAlign(edge: edge)
-        for  v in views {
-            container.addSubview(v)
-        }
-        
-        views[0].mt_innerAlign(left: 0, top: 0, right: 0, bottom: nil)
-        
-        for (i,v) in views.enumerate() {
-            if i > 0 {
-                v.mt_SetSizeFromView(toView: views[0])
-                v.mt_OuterAlign(PinOuterPosition.Bottom, toView: views[i-1], space: gap, size: nil)
-            }
-        }
-        views.last!.mt_innerAlign(left: nil, top: nil, right: nil, bottom: 0)
-    }
-    
-    func mt_createVerticalMenu(views: [UIView], edge: UIEdgeInsets, gap: CGFloat, seperateColor: UIColor) {
-        func createSeperateView() -> UIView {
-            let seperateView = UIView()
-            seperateView.backgroundColor = UIColor.clearColor()
-            
-            let seperateLine = UIView()
-            seperateLine.backgroundColor = seperateColor
-            
-            seperateView.addSubview(seperateLine)
-            seperateLine.mt_InnerAlign(PinPosition.Center, space: 0, size: CGSize(width: 2, height: 40))
-            return seperateView
-        }
-        var seperateViews = [UIView]()
-        
-        let container = UIView()
-        self.addSubview(container)
-        
-        container.mt_InnerAlign(edge: edge)
-        
-        for  v in views {
-            
-            container.addSubview(v)
-            let seperateView = createSeperateView()
-            seperateViews += [seperateView]
-            container.addSubview(seperateView)
-        }
-        seperateViews.last?.removeFromSuperview()
-        
-        views[0].mt_innerAlign(left: 0, top: 0, right: nil, bottom: 0)
-        
-        for (i,v) in views.enumerate() {
-            if i > 0 {
-                v.mt_SetSizeFromView(toView: views[0])
-                v.mt_OuterAlign(PinOuterPosition.Right, toView: views[i-1], space: gap, size: nil)
-            }
-        }
-        views.last!.mt_BasicConstraint(BasicConstraintType.TrailToTrail, toView: nil, space: 0)
-        
-        for index in 0 ..< seperateViews.count - 1 {
-            seperateViews[index].mt_innerAlign(left: (0, views[index]), top: (-edge.top, nil), right: (0, views[index + 1]), bottom: (0, nil))
-        }
-    }
 }
