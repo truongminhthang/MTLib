@@ -7,16 +7,84 @@
 //
 
 import UIKit
+
+extension CGRect {
+    func mt_getCGRectWithPosition(pinTo: PinPosition, space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) -> CGRect {
+        switch pinTo {
+        case PinPosition.HighLeft:
+            return hightLeft(space: space, size: size, offset: offset)
+        case PinPosition.HighCenter:
+            return hightCenter(space: space, size: size, offset: offset)
+        case PinPosition.HighRight:
+            return hightRight(space: space, size: size, offset: offset)
+        case PinPosition.MidLeft:
+            return midLeft(space: space, size: size, offset: offset)
+        case PinPosition.MidRight:
+            return midRight(space: space, size: size, offset: offset)
+        case PinPosition.LowLeft:
+            return lowLeft(space: space, size: size, offset: offset)
+        case PinPosition.LowCenter:
+            return lowCenter(space: space, size: size, offset: offset)
+        case PinPosition.LowRight:
+            return lowRight(space: space, size: size, offset: offset)
+        default:
+            return CGRectZero
+        }
+    }
+    
+    func hightLeft(space space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) -> CGRect {
+        return CGRectZero
+
+    }
+    
+    func hightCenter(space space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) -> CGRect {
+        return CGRectZero
+
+    }
+    
+    func hightRight(space space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) -> CGRect {
+        return CGRectZero
+
+    }
+    
+    func midLeft(space space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) -> CGRect {
+        return CGRectZero
+
+    }
+    
+    func midRight(space space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) -> CGRect {
+        return CGRectZero
+
+    }
+    
+    func lowLeft(space space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) -> CGRect {
+        return CGRectZero
+
+    }
+    
+    func lowCenter(space space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) -> CGRect {
+        
+        return CGRectZero
+
+    }
+    
+    func lowRight(space space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) -> CGRect {
+        return CGRectZero
+
+    }
+
+}
+
 extension UIView {
     func mt_innerAlignManual(left: CGFloat, top: CGFloat, right: CGFloat, bottom: CGFloat) {
         self.leadToLead(left)
         print(self.frame)
         self.topToTop(top)
-                print(self.frame)
+        print(self.frame)
         self.trailToTrail(right)
-                print(self.frame)
+        print(self.frame)
         self.bottomToBottom(bottom)
-                print(self.frame)
+        print(self.frame)
     }
     
     func mt_innerAlignManual(pinTo: PinPosition, space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) {
@@ -40,9 +108,9 @@ extension UIView {
         default:
             break
         }
-
+        
     }
-
+    
     
     private func leadToLead(space: CGFloat){
         self.frame.origin.x = space
@@ -94,7 +162,7 @@ extension UIView {
         let y = (superview!.frame.height - size.height) * 0.5
         self.leadToLead(x + offset.horizontal)
         self.topToTop(y + offset.vertical)
-            self.frame.size = size
+        self.frame.size = size
     }
     
     private func midRight (space space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) {
@@ -104,7 +172,7 @@ extension UIView {
         self.topToTop(y + offset.vertical)
         self.frame.size = size
     }
-
+    
     
     private func lowLeft(space space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) {
         self.leadToLead(space + offset.horizontal)
@@ -216,7 +284,7 @@ extension UIView {
         let y = v.frame.origin.y - gap - size.height + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
-
+        
     }
     
     private func topFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
@@ -241,7 +309,7 @@ extension UIView {
         let y = v.frame.origin.y - gap - size.height + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
-       
+        
     }
     
     private func higherRightFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
@@ -250,7 +318,7 @@ extension UIView {
         let y = v.frame.origin.y + gap + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
-
+        
     }
     
     private func rightFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
@@ -259,7 +327,7 @@ extension UIView {
         let y = v.frame.origin.y + (v.frame.height - size.height) * 0.5 + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
-
+        
     }
     
     private func lowerRightFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
@@ -278,7 +346,7 @@ extension UIView {
         let y = v.frame.origin.y + (v.frame.height + gap) + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
-
+        
     }
     
     private func righterBottomFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
@@ -287,7 +355,7 @@ extension UIView {
         let y = v.frame.origin.y + (v.frame.height + gap) + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
-
+        
     }
     
     private func bottomFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
