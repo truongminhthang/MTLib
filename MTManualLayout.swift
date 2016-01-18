@@ -8,73 +8,6 @@
 
 import UIKit
 
-extension CGRect {
-    func mt_getCGRectWithPosition(pinTo: PinPosition, space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) -> CGRect {
-        switch pinTo {
-        case PinPosition.HighLeft:
-            return hightLeft(space: space, size: size, offset: offset)
-        case PinPosition.HighCenter:
-            return hightCenter(space: space, size: size, offset: offset)
-        case PinPosition.HighRight:
-            return hightRight(space: space, size: size, offset: offset)
-        case PinPosition.MidLeft:
-            return midLeft(space: space, size: size, offset: offset)
-        case PinPosition.MidRight:
-            return midRight(space: space, size: size, offset: offset)
-        case PinPosition.LowLeft:
-            return lowLeft(space: space, size: size, offset: offset)
-        case PinPosition.LowCenter:
-            return lowCenter(space: space, size: size, offset: offset)
-        case PinPosition.LowRight:
-            return lowRight(space: space, size: size, offset: offset)
-        default:
-            return CGRectZero
-        }
-    }
-    
-    func hightLeft(space space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) -> CGRect {
-        return CGRectZero
-
-    }
-    
-    func hightCenter(space space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) -> CGRect {
-        return CGRectZero
-
-    }
-    
-    func hightRight(space space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) -> CGRect {
-        return CGRectZero
-
-    }
-    
-    func midLeft(space space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) -> CGRect {
-        return CGRectZero
-
-    }
-    
-    func midRight(space space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) -> CGRect {
-        return CGRectZero
-
-    }
-    
-    func lowLeft(space space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) -> CGRect {
-        return CGRectZero
-
-    }
-    
-    func lowCenter(space space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) -> CGRect {
-        
-        return CGRectZero
-
-    }
-    
-    func lowRight(space space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero) -> CGRect {
-        return CGRectZero
-
-    }
-
-}
-
 extension UIView {
     func mt_innerAlignManual(left: CGFloat, top: CGFloat, right: CGFloat, bottom: CGFloat) {
         self.leadToLead(left)
@@ -201,176 +134,176 @@ extension UIView {
     func mt_OuterAlignManual(pinTo: PinOuterPosition, toView v: UIView,space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero){
         switch pinTo {
         case .BottomLeft:
-            return bottomLeftFromView(toView: v, gap: space, size: size, offset: offset)
+            return bottomLeftFromView(toView: v, space: space, size: size, offset: offset)
         case .LowerLeft:
-            return lowerLeftFromView(toView: v, gap: space, size: size, offset: offset)
+            return lowerLeftFromView(toView: v, space: space, size: size, offset: offset)
         case .Left:
-            return leftFromView(toView: v, gap: space, size: size, offset:  offset)
+            return leftFromView(toView: v, space: space, size: size, offset:  offset)
         case .HigherLeft:
-            return higherLeftFromView(toView: v, gap: space, size: size, offset: offset)
+            return higherLeftFromView(toView: v, space: space, size: size, offset: offset)
         case .TopLeft:
-            return topLeftFromView(toView: v, gap: space, size: size, offset: offset)
+            return topLeftFromView(toView: v, space: space, size: size, offset: offset)
         case .LefterTop:
-            return lefterTopFromView(toView: v, gap: space, size: size, offset: offset)
+            return lefterTopFromView(toView: v, space: space, size: size, offset: offset)
         case .Top:
-            return topFromView(toView: v, gap: space, size: size, offset: offset)
+            return topFromView(toView: v, space: space, size: size, offset: offset)
         case . RighterTop:
-            return righterTopFromView(toView: v, gap: space, size: size, offset: offset)
+            return righterTopFromView(toView: v, space: space, size: size, offset: offset)
         case .TopRight:
-            return topRightFromView(toView: v, gap: space, size: size, offset: offset)
+            return topRightFromView(toView: v, space: space, size: size, offset: offset)
         case .HigherRight:
-            return higherRightFromView(toView: v, gap: space, size: size, offset: offset)
+            return higherRightFromView(toView: v, space: space, size: size, offset: offset)
         case .Right:
-            return rightFromView(toView: v, gap: space, size: size, offset: offset)
+            return rightFromView(toView: v, space: space, size: size, offset: offset)
         case .LowerRight:
-            return lowerRightFromView(toView: v, gap: space, size: size, offset: offset)
+            return lowerRightFromView(toView: v, space: space, size: size, offset: offset)
         case .BottomRight:
-            return bottomRightFromView(toView: v, gap: space, size: size, offset: offset)
+            return bottomRightFromView(toView: v, space: space, size: size, offset: offset)
         case .LefterBottom:
-            return lefterBottomFromView(toView: v, gap: space, size: size, offset: offset)
+            return lefterBottomFromView(toView: v, space: space, size: size, offset: offset)
         case .Bottom:
-            return bottomFromView(toView: v, gap: space, size: size, offset: offset)
+            return bottomFromView(toView: v, space: space, size: size, offset: offset)
         case .RighterBottom:
-            return righterBottomFromView(toView: v, gap: space, size: size, offset: offset)
+            return righterBottomFromView(toView: v, space: space, size: size, offset: offset)
         }
     }
     
     //MARK: - BASE POSITION OUTER
     
-    private func bottomLeftFromView (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
+    private func bottomLeftFromView (toView v: UIView, space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        let x = v.frame.origin.x - gap - size.width + offset.horizontal
-        let y = v.frame.origin.y + v.frame.height + gap + offset.vertical
+        let x = v.frame.origin.x - space - size.width + offset.horizontal
+        let y = v.frame.origin.y + v.frame.height + space + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
     }
     
-    private func lowerLeftFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
+    private func lowerLeftFromView  (toView v: UIView, space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        let x = v.frame.origin.x - gap - size.width + offset.horizontal
-        let y = v.frame.height + v.frame.origin.y - gap - size.height + offset.vertical
+        let x = v.frame.origin.x - space - size.width + offset.horizontal
+        let y = v.frame.height + v.frame.origin.y - space - size.height + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
     }
     
-    private func leftFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
+    private func leftFromView  (toView v: UIView, space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        let x = v.frame.origin.x - gap - size.width + offset.horizontal
+        let x = v.frame.origin.x - space - size.width + offset.horizontal
         let y = (v.frame.height - size.height ) * 0.5 + v.frame.origin.y + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
     }
     
-    private func higherLeftFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
+    private func higherLeftFromView  (toView v: UIView, space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        let x = v.frame.origin.x - gap - size.width + offset.horizontal
-        let y = v.frame.origin.y + gap + offset.vertical
+        let x = v.frame.origin.x - space - size.width + offset.horizontal
+        let y = v.frame.origin.y + space + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
         
     }
     //MARK: TOP
-    private func topLeftFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
+    private func topLeftFromView  (toView v: UIView, space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        let x = v.frame.origin.x - gap - size.width + offset.horizontal
-        let y = v.frame.origin.y - gap - size.height + offset.vertical
+        let x = v.frame.origin.x - space - size.width + offset.horizontal
+        let y = v.frame.origin.y - space - size.height + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
     }
     
-    private func lefterTopFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
+    private func lefterTopFromView  (toView v: UIView, space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        let x = v.frame.origin.x + gap + offset.horizontal
-        let y = v.frame.origin.y - gap - size.height + offset.vertical
+        let x = v.frame.origin.x + space + offset.horizontal
+        let y = v.frame.origin.y - space - size.height + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
         
     }
     
-    private func topFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
+    private func topFromView  (toView v: UIView, space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
         let x = (v.frame.width - size.width) * 0.5 + v.frame.origin.x + offset.horizontal
-        let y = v.frame.origin.y - gap - size.height + offset.vertical
+        let y = v.frame.origin.y - space - size.height + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
     }
     
-    private func righterTopFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
+    private func righterTopFromView  (toView v: UIView, space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        let x = (v.frame.width + v.frame.origin.x) - gap - size.width + offset.horizontal
-        let y = v.frame.origin.y - gap - size.height + offset.vertical
+        let x = (v.frame.width + v.frame.origin.x) - space - size.width + offset.horizontal
+        let y = v.frame.origin.y - space - size.height + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
     }
     //MARK: RIGHT
-    private func topRightFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
+    private func topRightFromView  (toView v: UIView, space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        let x = (v.frame.width + v.frame.origin.x) + gap + offset.horizontal
-        let y = v.frame.origin.y - gap - size.height + offset.vertical
+        let x = (v.frame.width + v.frame.origin.x) + space + offset.horizontal
+        let y = v.frame.origin.y - space - size.height + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
         
     }
     
-    private func higherRightFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
+    private func higherRightFromView  (toView v: UIView, space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        let x = (v.frame.width + v.frame.origin.x) + gap + offset.horizontal
-        let y = v.frame.origin.y + gap + offset.vertical
+        let x = (v.frame.width + v.frame.origin.x) + space + offset.horizontal
+        let y = v.frame.origin.y + space + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
         
     }
     
-    private func rightFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
+    private func rightFromView  (toView v: UIView, space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        let x = (v.frame.width + v.frame.origin.x) + gap + offset.horizontal
+        let x = (v.frame.width + v.frame.origin.x) + space + offset.horizontal
         let y = v.frame.origin.y + (v.frame.height - size.height) * 0.5 + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
         
     }
     
-    private func lowerRightFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
+    private func lowerRightFromView  (toView v: UIView, space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        let x = (v.frame.width + v.frame.origin.x) + gap + offset.horizontal
-        let y = v.frame.origin.y + (v.frame.height - size.height - gap) + offset.vertical
+        let x = (v.frame.width + v.frame.origin.x) + space + offset.horizontal
+        let y = v.frame.origin.y + (v.frame.height - size.height - space) + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
     }
     
     // MARK: BOTTOM
     
-    private func bottomRightFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
+    private func bottomRightFromView  (toView v: UIView, space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        let x = (v.frame.width + v.frame.origin.x) + gap + offset.horizontal
-        let y = v.frame.origin.y + (v.frame.height + gap) + offset.vertical
+        let x = (v.frame.width + v.frame.origin.x) + space + offset.horizontal
+        let y = v.frame.origin.y + (v.frame.height + space) + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
         
     }
     
-    private func righterBottomFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
+    private func righterBottomFromView  (toView v: UIView, space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        let x = (v.frame.width + v.frame.origin.x) - gap - size.width + offset.horizontal
-        let y = v.frame.origin.y + (v.frame.height + gap) + offset.vertical
+        let x = (v.frame.width + v.frame.origin.x) - space - size.width + offset.horizontal
+        let y = v.frame.origin.y + (v.frame.height + space) + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
         
     }
     
-    private func bottomFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
+    private func bottomFromView  (toView v: UIView, space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
         let x = (v.frame.width - size.width) * 0.5 + v.frame.origin.x + offset.horizontal
-        let y = v.frame.origin.y + (v.frame.height + gap) + offset.vertical
+        let y = v.frame.origin.y + (v.frame.height + space) + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
     }
     
     
-    private func lefterBottomFromView  (toView v: UIView, gap: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
+    private func lefterBottomFromView  (toView v: UIView, space: CGFloat, size: CGSize, offset: UIOffset = UIOffsetZero)
     {
-        let x = v.frame.origin.x + gap + offset.horizontal
-        let y = v.frame.origin.y + (v.frame.height + gap) + offset.vertical
+        let x = v.frame.origin.x + space + offset.horizontal
+        let y = v.frame.origin.y + (v.frame.height + space) + offset.vertical
         self.frame.origin = CGPoint(x: x, y: y)
         self.frame.size = size
     }

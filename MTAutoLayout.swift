@@ -19,7 +19,7 @@ enum BasicConstraintType: Int {
     case CenterXToCenterX, CenterYToCenterY
 }
 
-enum PinOuterPosition {
+enum PinOuterPosition: Int {
     case BottomLeft, LowerLeft, Left, HigherLeft, TopLeft, LefterTop, Top, RighterTop
     case TopRight,HigherRight, Right, LowerRight, BottomRight, RighterBottom, Bottom, LefterBottom
 }
