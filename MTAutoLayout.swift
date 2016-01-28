@@ -1202,10 +1202,6 @@ extension UIView {
     }
     
     func mt_createVerticalMenu(views: [UIView], edge: UIEdgeInsets, gap: CGFloat, seperateColor: UIColor) {
-        let container = UIView()
-        self.addSubview(container)
-        container.mt_InnerAlign(edge: edge)
-        
         func createSeperateView() -> UIView {
             let seperateView = UIView()
             seperateView.backgroundColor = UIColor.clearColor()
@@ -1219,17 +1215,19 @@ extension UIView {
         }
         var seperateViews = [UIView]()
         
+        let container = UIView()
+        self.addSubview(container)
         
-        for  (i,v) in views.enumerate() {
-            if i < views.count - 1 {
-                container.addSubview(v)
-                let seperateView = createSeperateView()
-                seperateViews += [seperateView]
-                container.addSubview(seperateView)
-            }
-            container.addSubview(v)
+        container.mt_InnerAlign(edge: edge)
+        
+        for  v in views {
             
+            container.addSubview(v)
+            let seperateView = createSeperateView()
+            seperateViews += [seperateView]
+            container.addSubview(seperateView)
         }
+        seperateViews.last?.removeFromSuperview()
         
         views[0].mt_innerAlign(left: 0, top: 0, right: nil, bottom: 0)
         
@@ -1239,9 +1237,9 @@ extension UIView {
                 v.mt_OuterAlign(PinOuterPosition.Right, toView: views[i-1], space: gap, size: nil)
             }
         }
-        views.last!.mt_innerAlign(left: nil, top: nil, right: 0, bottom: nil)
-        print(seperateViews.count)
-        for index in 0 ..< seperateViews.count {
+        views.last!.mt_BasicConstraint(BasicConstraintType.TrailToTrail, toView: nil, space: 0)
+        
+        for index in 0 ..< seperateViews.count - 1 {
             seperateViews[index].mt_innerAlign(left: (0, views[index]), top: (-edge.top, nil), right: (0, views[index + 1]), bottom: (0, nil))
         }
     }
