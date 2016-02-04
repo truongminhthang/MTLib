@@ -9,7 +9,7 @@ import UIKit
 
 enum PinPosition : Int {
     case HighLeft, HighCenter, HighRight
-    case MidLeft, Center, MidRight
+    case MidLeft, MidRight
     case LowLeft, LowCenter, LowRight
 }
 
@@ -97,17 +97,12 @@ extension UIView {
             return hightRight(topRight: space, size: size, offset: offset)
         case PinPosition.MidLeft:
             return midLeft(space, size: size, offset: offset)
-            
-        case PinPosition.Center:
-            return center(size, offset: offset)
-            
         case PinPosition.MidRight:
             return midRight(space, size: size, offset: offset)
         case PinPosition.LowLeft:
             return lowLeft(space, size: size, offset: offset)
         case PinPosition.LowCenter:
             return lowCenter(space, size: size, offset: offset)
-            
         case PinPosition.LowRight:
             return lowRight(space, size: size, offset: offset)
             
@@ -189,7 +184,7 @@ extension UIView {
         return dict
     }
     
-    private func center(size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint] {
+    func mt_center(size: CGSize?, offset: UIOffset = UIOffsetZero) -> [String: NSLayoutConstraint] {
         var dict = [String: NSLayoutConstraint]()
         
         let centerX = centerXToCenterX(space: offset.horizontal)
@@ -347,7 +342,7 @@ extension UIView {
                 let constraint = bottomToBottom(space: -theBottom.0)
                 dict[constraint.identifier!] = constraint
             }
-
+            
         }
         
         return dict
@@ -1210,7 +1205,7 @@ extension UIView {
             seperateLine.backgroundColor = seperateColor
             
             seperateView.addSubview(seperateLine)
-            seperateLine.mt_InnerAlign(PinPosition.Center, space: 0, size: CGSize(width: 2, height: 40))
+            seperateLine.mt_center(CGSize(width: 2, height: 40))
             return seperateView
         }
         var seperateViews = [UIView]()

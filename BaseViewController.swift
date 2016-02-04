@@ -9,12 +9,19 @@
 import UIKit
 
 class BaseViewController: UIViewController {
-
+    
+    lazy var utils = Utils()
+    lazy var appSetting = AppSettings()
+    lazy var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let mainColor = UIColor.redColor()
+    let mainBackgroundColor = UIColor.cyanColor()
+    let secondaryColor = UIColor.redColor()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print(self.dynamicType)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -31,19 +38,23 @@ class BaseViewController: UIViewController {
             navigationItem.leftBarButtonItem = customBarButton
         } else {
             navigationItem.rightBarButtonItem = customBarButton
-
+            
         }
         return customBarButton
     }
     
-    func mt_createDefaultButton() -> UIButton{
-        var button = UIButton()
-        
+    func mt_createDefaultButton(title: String, target: String) -> UIButton{
+        let button = UIButton()
+        button.setTitle(title, forState: UIControlState.Normal)
+        button.addTarget(self, action: Selector(target), forControlEvents: UIControlEvents.TouchUpInside)
+        button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        button.backgroundColor = UIColor.grayColor()
+        button.roundCorner()
         return button
     }
     
     func mt_createDefaultLabel() -> UILabel {
-        var label = UILabel()
+        let label = UILabel()
         
         return label
     }
