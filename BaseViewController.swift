@@ -10,7 +10,6 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
-    lazy var utils = Utils()
     lazy var appSetting = AppSettings()
     lazy var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let mainColor = UIColor.redColor()
@@ -47,8 +46,7 @@ class BaseViewController: UIViewController {
         let button = UIButton()
         button.setTitle(title, forState: UIControlState.Normal)
         button.addTarget(self, action: Selector(target), forControlEvents: UIControlEvents.TouchUpInside)
-        button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        button.backgroundColor = UIColor.grayColor()
+        button.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
         button.roundCorner()
         return button
     }

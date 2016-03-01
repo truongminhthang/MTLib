@@ -1,49 +1,12 @@
 //
-//  AppSetting.swift
-//  timeInterval
+//  UserDefaultConverter.swift
+//  MP_ARWedding
 //
-//  Created by Trương Thắng on 1/29/16.
-//  Copyright © 2016 Trương Thắng. All rights reserved.
+//  Created by Trương Thắng on 2/20/16.
+//  Copyright © 2016 MyPrint. All rights reserved.
 //
 
 import Foundation
-
-enum SubRequestUrl : String {
-    case registerUser = "user/add"
-    case updateUser = "user/edit"
-    case masterArea = "master/area"
-    case pref = "master/pref"
-    case areaCount = "job_info/area_count"
-    case searchJob = "job_info/search"
-    case getJobTypeList = "master/job_code"
-    case getSubJobTypeList = "master/job_type_code"
-    case getSalaryTypeList = "master/salary_type"
-    case getSalaryRangeList = "master/salary_range"
-    case downloadPhoto = "photo/"
-    case getJobDetail = "job_info/detail/"
-    case getListMessages = "chat/receive/"
-    case sendMessage = "chat/send"
-    case reviewCheck = "review/check/"
-    case reviewAction = "review/action/"
-}
-
-struct AppSettings {
-    var baseUrl : String {
-        get {
-            return "http://test1.pattoput.com/";
-            #if DEBUG
-                return "http://test1.pattoput.com/"
-            #else
-                return "http://mtmap28.xsrv.jp/"
-            #endif
-        }
-    }
-    
-    func apiUrl(subUrl : SubRequestUrl) -> String {
-        print("requesting url:  \(baseUrl + subUrl.rawValue)")
-        return baseUrl + subUrl.rawValue
-    }
-}
 
 extension Double {
     func saveToUserDefaults(withKey key: String) {
@@ -85,6 +48,9 @@ extension Bool {
 extension String {
     func saveToUserDefaults(withKey key: String) {
         let defaults = NSUserDefaults.standardUserDefaults()
+        if String.loadFromUserDefaults(withKey: key) != "" {
+            defaults.setObject(nil, forKey: key)
+        }
         defaults.setObject(self, forKey: key)
         defaults.synchronize()
     }

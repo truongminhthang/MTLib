@@ -1177,6 +1177,40 @@ extension UIView {
         views.last!.mt_BasicConstraint(BasicConstraintType.TrailToTrail, toView: nil, space: 0)
     }
     
+    func mt_splitVerticallyBySizes (views: [UIView], sizes: [CGFloat?] , edge: UIEdgeInsets, gap: CGFloat) {
+        
+        guard views.count == sizes.count else {
+            print("the number of view and the number of Size array need to be equal")
+            return
+        }
+        
+        
+        
+        let container = UIView()
+        self.addSubview(container)
+        
+        container.mt_InnerAlign(edge: edge)
+        
+        for  (i,v) in views.enumerate() {
+            container.addSubview(v)
+            if let size = sizes[i] {
+                v.mt_setWidth(size)
+            }
+            v.mt_innerAlign(left: nil, top: 0, right: nil, bottom: 0)
+            
+        }
+        
+        views[0].mt_innerAlign(left: 0, top: nil, right: nil, bottom: nil)
+        
+        for (i,v) in views.enumerate() {
+            if i > 0 {
+                v.mt_BasicConstraint(BasicConstraintType.LeadToTrail, toView: views[i-1], space: gap)
+            }
+        }
+        views.last!.mt_BasicConstraint(BasicConstraintType.TrailToTrail, toView: nil, space: 0)
+    }
+    
+    
     func mt_splitHorizontallyByViews(views: [UIView], edge: UIEdgeInsets, gap: CGFloat) {
         let container = UIView()
         self.addSubview(container)
