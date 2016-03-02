@@ -82,7 +82,7 @@ class ActionSheet: UIView {
             return
         }
         backgroundButton                    = UIButton()
-        backgroundButton.backgroundColor    = UIColor.grayColor().colorWithAlphaComponent(0.5)
+        backgroundButton.backgroundColor    = UIColor.blackColor().colorWithAlphaComponent(0.3)
         backgroundButton.addTarget(self, action: "hide", forControlEvents: UIControlEvents.TouchUpInside)
         backgroundButton.frame              = self.bounds
         self.addSubview(backgroundButton)

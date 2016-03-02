@@ -46,8 +46,10 @@ class BaseViewController: UIViewController {
         let button = UIButton()
         button.setTitle(title, forState: UIControlState.Normal)
         button.addTarget(self, action: Selector(target), forControlEvents: UIControlEvents.TouchUpInside)
-        button.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
-        button.roundCorner()
+        button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        button.setTitleColor(UIColor.cyanColor().colorWithAlphaComponent(0.5), forState: UIControlState.Selected)
+        button.titleLabel?.numberOfLines = 0
+        //        button.roundCorner()
         return button
     }
     
