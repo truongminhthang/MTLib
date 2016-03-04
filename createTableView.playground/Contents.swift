@@ -3,16 +3,14 @@
 import Cocoa
 
 let array : Array =
-[("Address", "UITableViewCell"),
-    ("Square" , "UITableViewCell"),
-    ("Route" , "UITableViewCell"),
-    ("Equipment" , "UITableViewCell"),
+[
     ("Price" , "UITableViewCell"),
     ("Tax" , "UITableViewCell"),
     ("CalculateLoan" , "UITableViewCell"),
     ("EstimatePrice" , "UITableViewCell"),
     ("Call" , "UITableViewCell"),
 ]
+let useDelegate = true
 
 let arrayCellType = [String]()
 var setCellType = Set<String>()
@@ -29,7 +27,7 @@ for item in array {
     print("\tcase \(item.0)")
 }
 
-print("\t case All" +
+print("\tcase All\n" +
     "\n\tfunc reuseIdentifier() -> String {" +
     " \n\t\t switch self {"
 )
@@ -91,10 +89,32 @@ print("private func configCell(cell: \(i), indexPath: NSIndexPath) {" +
 
 for i in array {
     print("private func config\(i.0)Cell(cell: \(i.1), indexPath: NSIndexPath) {" +
-        "\n\t<#code#> \n}"
+        "\n\t<#code#> \n}\n"
     )
 }
 
+if useDelegate {
+    print("// Delegate\n")
+    print("func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {" +
+        "\n\tlet cellType = \(willDisplayCell)[indexPath.row]" +
+        "\n\tswitch cellType {"
+    )
+    
+    for i in array {
+        print("\tcase .\(i.0):" +
+            "\n\t\tonClick\(i.0)Cell(indexPath)"
+        )
+    }
+    print("\tdefault: \n\t\tbreak")
+    print("\t}\n}\n")
+    
+    for i in array {
+        print("private func onClick\(i.0)Cell(indexPath: NSIndexPath) {" +
+            "\n\t<#code#> \n}\n"
+        )
+    }
+    
+}
 
 
 
