@@ -31,6 +31,10 @@ extension tm {
         return self.tm_mday
     }
     
+    func shortDate() -> String {
+        return "\(self.date())/\(self.monthNumber()))"
+    }
+    
     func weekDayEnglish() -> String {
         switch self.tm_wday {
         case 0:
@@ -158,6 +162,8 @@ extension tm {
         return timeInfo
     }
     
+    
+    
 }
 
 extension NSDateFormatter {
@@ -179,4 +185,75 @@ extension NSDateFormatter {
     class func fulldatetime() -> NSDateFormatter {
         return dateFormatterForFormat("yyyy-MM-dd HH:mm:ss")
     }
+}
+
+extension NSTimeInterval {
+    func second() -> Int32 {
+        return self.timeInfo.second()
+    }
+    
+    func minute() -> Int32 {
+        return self.timeInfo.minute()
+    }
+    
+    func minuteAndSecond() -> String {
+        
+        return self.timeInfo.minuteAndSecond()
+    }
+    
+    func hour() -> Int32 {
+        return self.timeInfo.hour()
+    }
+    
+    func date() -> Int32 {
+        return self.timeInfo.date()
+    }
+    
+    func shortDate() -> String {
+        return self.timeInfo.shortDate()
+    }
+    
+    func weekDayEnglish() -> String {
+        return  self.timeInfo.weekDayEnglish()
+    }
+    
+    func weekDayJapanese() -> String {
+        return  self.timeInfo.weekDayJapanese()
+    }
+    
+    func monthDay() -> Int32 {
+        return self.timeInfo.monthDay()
+    }
+    
+    func yearDay() -> Int32 {
+        return self.timeInfo.yearDay()
+    }
+    
+    func monthNumber() -> Int32 {
+        return self.timeInfo.monthNumber()
+    }
+    
+    func monthEnglishName() -> String {
+        return self.timeInfo.monthEnglishName()
+    }
+    
+    func toMonthJapaneseName() -> String {
+        return self.timeInfo.toMonthJapaneseName()
+        
+    }
+    
+    func year() -> Int32 {
+        return self.timeInfo.year()
+    }
+    
+    var timeInfo : tm {
+        var timeInfo = tm()
+        var t : time_t = Int(self)
+        gmtime_r(&t, &timeInfo)
+        return timeInfo
+    }
+}
+
+func == (left: NSTimeInterval, right: NSTimeInterval) -> Bool {
+    return left.year() == right.year() && left.monthNumber() == right.monthNumber() && left.date() == right.date()
 }
