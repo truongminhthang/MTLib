@@ -18,7 +18,6 @@ extension Double {
         let defaults = NSUserDefaults.standardUserDefaults()
         return defaults.doubleForKey(key)
     }
-    
 }
 
 extension Float {
