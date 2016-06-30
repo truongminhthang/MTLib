@@ -19,8 +19,8 @@ for i in cellOrder {
     setCellType.insert(i.1)
 }
 
-let willDisplayCell = "willDisplayCell"
-print("var \(willDisplayCell) = [CellType]()")
+let willDisplayCells = "willDisplayCells"
+print("var \(willDisplayCells) = [CellType]()")
 
 print("enum CellType: Int { \n")
 
@@ -44,8 +44,8 @@ for item in cellOrder {
 print("\t\t default:\n \t\t\t return \"\"\n\t\t}\n\t}\n}")
 // tableView
 
-print("\n func setup\(willDisplayCell)() {" +
-    "\n\t\(willDisplayCell) = []" +
+print("\n func setup\(willDisplayCells)() {" +
+    "\n\t\(willDisplayCells) = []" +
     "\n\tfor i in 0 ..< CellType.All.rawValue {" +
     "\n\t\t if let cellType = CellType(rawValue: i) {" +
     "\n\t\t\tswitch cellType {")
@@ -59,16 +59,16 @@ for i in cellOrder {
 }
 print("\t\t\tdefault: \n\t\t\t\t break")
 print("\t\t\t}")
-print("\t\t\t\(willDisplayCell) += [cellType]")
+print("\t\t\t\(willDisplayCells) += [cellType]")
 print("\n\t\t}\n\t}\n}\n")
 
 
 print("func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {" +
-    "\n\treturn \(willDisplayCell).count" +
+    "\n\treturn \(willDisplayCells).count" +
     "\n}\n")
 
 print("func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {" +
-    "\n\tlet cellType = \(willDisplayCell)[indexPath.row]" +
+    "\n\tlet cellType = \(willDisplayCells)[indexPath.row]" +
     "\n\tlet cell: UITableViewCell! = tableView.dequeueReusableCellWithIdentifier(cellType.reuseIdentifier(), forIndexPath: indexPath)" +
     "\n\tswitch cellType {"
 )
@@ -82,11 +82,7 @@ for i in cellOrder {
 
 print("\tdefault: \n\t\tbreak")
 print("\t}\n\treturn cell \n}\n")
-/*for i in setCellType {
-print("private func configCell(cell: \(i), indexPath: NSIndexPath) {" +
-"\n\t<#code#> \n}"
-)
-}*/
+
 
 for i in cellOrder {
     print("func config\(i.0)Cell(cell: \(i.1), indexPath: NSIndexPath) {" +
@@ -97,7 +93,7 @@ for i in cellOrder {
 if useDelegate {
     print("// Delegate\n")
     print("func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {" +
-        "\n\tlet cellType = \(willDisplayCell)[indexPath.row]" +
+        "\n\tlet cellType = \(willDisplayCells)[indexPath.row]" +
         "\n\tswitch cellType {"
     )
     
